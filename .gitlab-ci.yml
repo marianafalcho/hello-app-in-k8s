@@ -1,4 +1,2 @@
-
 include:
-  - local: 'gitlab/templates/'
-    template : BuildandPush.yml
+  - local: 'gitlab/templates/BuildandPush.yml'
