@@ -1,11 +1,10 @@
-    # my-app-ingress.yaml
     apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: hello-ingress
     spec:
       rules:
-      - host: hello.local # Choose a local hostname for your application
+      - host: hello.local
         http:
           paths:
           - path: /
@@ -14,4 +13,4 @@
               service:
                 name: hello-service
                 port:
-                  number: 5000
+                  number: {{ .Values.service.port }}
