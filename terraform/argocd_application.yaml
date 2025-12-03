@@ -1,0 +1,18 @@
+server:
+  additionalApplications:
+   - name: hello
+     namespace: argocd
+     project: default
+     source:
+       repoURL: https://github.com/marianafalcho/hello-app-in-k8s.git
+       targetRevision: HEAD
+       path: helm-hello/
+       directory:
+         recurse: true
+     destination:
+       server: https://kubernetes.default.svc
+       namespace: default
+     syncPolicy:
+       automated:
+         prune: false
+         selfHeal: false
