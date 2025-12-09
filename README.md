@@ -3,6 +3,7 @@
 This project automates the provisioning of a local Kubernetes environment and continuous deployment pipeline.
 
 ## Contents
+```
 hello-app-in-k8s/
 ├── app/
 │   └── hello.py
@@ -34,6 +35,7 @@ hello-app-in-k8s/
 ├── .gitlab-ci.yml
 ├── Dockerfile
 ├── README.md
+```
 
 ## Components
 
@@ -55,43 +57,43 @@ Root directory of the project. Contains all application code, Kubernetes configu
 
 Contains the application code and its dependencies.
 
-hello.py → The main Python application file (example: a simple web server).
+`hello.py` → The main Python application file (example: a simple web server).
 
-requirements.txt → Lists Python dependencies for the app.
+`requirements.txt` → Lists Python dependencies for the app.
 
 ***gitlab/templates/***
 
 Holds reusable GitLab CI/CD templates.
 
-BuildandPush.yml → GitLab CI template for building Docker images and pushing them to a container registry. Likely used as an include in .gitlab-ci.yml.
+`BuildandPush.yml` → GitLab CI template for building Docker images and pushing them to a container registry. Likely used as an include in .gitlab-ci.yml.
 
 ***k8s-declarative-configs/***
 
 Stores raw Kubernetes manifests (YAML) for direct `kubectl apply` deployments.
 
-deployment.yaml → Kubernetes Deployment definition for the app.
+`deployment.yaml` → Kubernetes Deployment definition for the app.
 
-svc.yaml → Service definition exposing the app.
+`svc.yaml` → Service definition exposing the app.
 
-ingress.yaml → Ingress resource to route external traffic to the app (e.g., through NGINX).
+`ingress.yaml` → Ingress resource to route external traffic to the app (e.g., through NGINX).
 
 ***k8s-helm-configs/***
 
 Contains Helm charts for deploying applications in a more reusable, templated way.
 
-app/ → Helm chart for the app.
+*app/*→ Helm chart for the app.
 
-Chart.yaml → Metadata about the Helm chart (name, version, etc.).
+`Chart.yaml` → Metadata about the Helm chart (name, version, etc.).
 
-values.yaml → Default configuration values for templates.
+`values.yaml `→ Default configuration values for templates.
 
-templates/ → Templated Kubernetes manifests:
+*templates/* → Templated Kubernetes manifests:
 
-deployment.yaml → Deployment template.
+`deployment.yaml` → Deployment template.
 
-ingress.yaml → Ingress template.
+`ingress.yaml` → Ingress template.
 
-service.yaml → Service template.
+`service.yaml` → Service template.
 
 Helm allows parameterized deployments, making it easy to reuse and override configs.
 
@@ -99,19 +101,19 @@ Helm allows parameterized deployments, making it easy to reuse and override conf
 
 Terraform scripts to provision infrastructure, particularly local Kubernetes with KinD, NGINX ingress, and ArgoCD.
 
-provider.tf → Configures Terraform provider(s).
+`provider.tf` → Configures Terraform provider(s).
 
-terraform.tf → Main Terraform settings (backend, variables, etc.).
+`terraform.tf `→ Main Terraform settings (backend, variables, etc.).
 
-kind_cluster.tf → Creates a KinD (Kubernetes in Docker) cluster.
+`kind_cluster.tf `→ Creates a KinD (Kubernetes in Docker) cluster.
 
-nginx_ingress.tf → Deploys NGINX ingress controller.
+`nginx_ingress.tf` → Deploys NGINX ingress controller.
 
-nginx_ingress_configs.tf → Additional NGINX configurations (e.g., ingress rules).
+`nginx_ingress_configs.tf` → Additional NGINX configurations (e.g., ingress rules).
 
-argocd.tf → Deploys ArgoCD to the cluster.
+`argocd.tf `→ Deploys ArgoCD to the cluster.
 
-argocd_app_config.yaml → ArgoCD application configuration (links Git repo/Helm chart for GitOps).
+`argocd_app_config.yaml` → ArgoCD application configuration (links Git repo/Helm chart for GitOps).
 
 ***.gitlab-ci.yml*** → GitLab CI pipeline orchestrating image build, push, and deployment.
 
