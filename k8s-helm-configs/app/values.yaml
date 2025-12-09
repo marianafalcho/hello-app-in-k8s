@@ -1,0 +1,9 @@
+replicaCount: 1
+image:
+  repository: marianaffalzone/flask-images
+  pullPolicy: IfNotPresent
+  tag: latest
+containerPort: 5000
+service:
+  type: ClusterIP
+  port: 5000
